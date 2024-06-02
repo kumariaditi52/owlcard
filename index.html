@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slick Slider with 5 Cards and Read More Modal</title>
+    <!-- Slick CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <style>
+        /* Custom styles for the slider */
+        .slider_event {
+            width: 80%;
+            margin: 50px auto;
+        }
+        .slick-slide {
+            margin: 0 10px;
+            padding: 20px;
+            background: #f7f7f7;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .slick-slide img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .content-page {
+            margin-top: 10px;
+        }
+        .button2 {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        /* .slick-prev:before, .slick-next:before {
+            color: black;
+        } */
+
+        /* Modal Styles */
+        .modal-page {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            /* background-color: rgba(0,0,0,0.4); */
+            background-color: #f7f7f7;
+            justify-content: center;
+            align-items: center;
+        }
+        .Modals-content {
+            background-color: #eee;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #000;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+        .close_icon {
+            color: red;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close_icon:hover,
+        .close_icon:focus {
+            color: blue;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .slider {
+                width: 90%;
+            }
+            .slick-slide {
+                margin: 0 5px;
+            }
+        }
+        @media (max-width: 992px) {
+            .slick-slide {
+                padding: 15px;
+            }
+        }
+        @media (max-width: 768px) {
+            .slider {
+                width: 95%;
+            }
+            .slick-slide {
+                margin: 0 5px;
+                padding: 10px;
+            }
+            .slick-slide img {
+                border-radius: 5px;
+            }
+        }
+        @media (max-width: 576px) {
+            .slider {
+                width: 100%;
+            }
+            .slick-slide {
+                margin: 0 2px;
+                padding: 5px;
+            }
+            .slick-slide img {
+                border-radius: 5px;
+            }
+            .button2 {
+                padding: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slider_event">
+        <div>
+            <img src="https://newsd.in/wp-content/uploads/2016/09/gurgaon.jpg" alt="Card 1">
+            <div class="content-page">
+                <p>Massage service at home</p>
+                <p>This is some content for card 1.</p>
+                <div class="button2" onclick="openModal('modal1')">Read More</div>
+            </div>
+        </div>
+        <div>
+            <img src="https://1.bp.blogspot.com/-3iG39_JZU9Y/T8PMN7oTVTI/AAAAAAAARF0/gFaRdUWuSFw/s1600/DSC01116.JPG" alt="Card 2">
+            <div class="content-page">
+                <p>Massage service at home</p>
+                <p>This is some content for card 2.</p>
+                <div class="button2" onclick="openModal('modal2')">Read More</div>
+            </div>
+        </div>
+        <div>
+            <img src="https://th.bing.com/th/id/OIP.hmmPvbzP6mjUOGH8_-R7GgHaFN?rs=1&pid=ImgDetMain" alt="Card 3">
+            <div class="content-page">
+                <p>Massage service at home</p>
+                <p>This is some content for card 3.</p>
+                <div class="button2" onclick="openModal('modal3')">Read More</div>
+            </div>
+        </div>
+        <div>
+            <img src="https://satyawaadi.com/wp-satya/uploads/2022/06/Haryana-CM-Approved-Various-Infrastructure-Projects-in-Gurugram.jpg" alt="Card 4">
+            <div class="content-page">
+                <p>Massage service at home</p>
+                <p>This is some content for card 4.</p>
+                <div class="button2" onclick="openModal('modal4')">Read More</div>
+            </div>
+        </div>
+        <div>
+            <img src="https://cdn.britannica.com/75/152475-050-DA89FF0A/Red-Fort-Old-Delhi-India.jpg" alt="Card 5">
+            <div class="content-page">
+                <p>Massage service at home</p>
+                <p>This is some content for card 5.</p>
+                <div class="button2" onclick="openModal('modal5')">Read More</div>
+            </div>
+        </div>
+        <div>
+            <img src="https://www.holidify.com/images/cmsuploads/compressed/Jamma_Masjid,_Old_Delhi_20181204133345.jpg" alt="Card 6">
+            <div class="content">
+                <p>Massage service at home</p>
+                <p>This is some content for card 6.</p>
+                <div class="button2" onclick="openModal('modal6')">Read More</div>
+            </div>
+        </div>
+        <div>
+            <img src="https://static1.squarespace.com/static/536401f6e4b01e9923ea7e0f/t/581a4051be6594f54cbf169c/1478115552436/3Q3A0712.jpg" alt="Card 7">
+            <div class="content">
+                <p>Massage service at home</p>
+                <p>This is some content for card 7.</p>
+                <div class="button2" onclick="openModal('modal7')">Read More</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal HTML -->
+    <div id="modal1" class="modal-page">
+        <div class="modal-content">
+            <span class="close_icon" onclick="closeModal('modal1')">&times;</span>
+            <p>Massage service at home</p>
+            <p>This is more detailed content for card 1. This content provides additional information.</p>
+        </div>
+    </div>
+    <div id="modal2" class="modal-page">
+        <div class="modal-content">
+            <span class="close_icon" onclick="closeModal('modal2')">&times;</span>
+            <p>Massage service at home</p>
+            <p>This is more detailed content for card 2. This content provides additional information.</p>
+        </div>
+    </div>
+    <div id="modal3" class="modal-page">
+        <div class="modal-content">
+            <span class="close_icon" onclick="closeModal('modal3')">&times;</span>
+            <p>Massage service at home</p>
+            <p>This is more detailed content for card 3. This content provides additional information.</p>
+        </div>
+    </div>
+    <div id="modal4" class="modal-page">
+        <div class="modal-content">
+            <span class="close_icon" onclick="closeModal('modal4')">&times;</span>
+            <p>Massage service at home</p>
+            <p>This is more detailed content for card 4. This content provides additional information.</p>
+        </div>
+    </div>
+    <div id="modal5" class="modal-page">
+        <div class="modal-content">
+            <span class="close_icon" onclick="closeModal('modal5')">&times;</span>
+            <p>Massage service at home</p>
+            <p>This is more detailed content for card 5. This content provides additional information.</p>
+        </div>
+    </div>
+    <div id="modal6" class="modal-page">
+        <div class="modal-content">
+            <span class="close_icon" onclick="closeModal('modal6')">&times;</span>
+            <p>Massage service at home</p>
+            <p>This is more detailed content for card 6. This content provides additional information.</p>
+        </div>
+    </div>
+    <div id="modal7" class="modal-page">
+        <div class="modal-content">
+            <span class="close_icon" onclick="closeModal('modal7')">&times;</span>
+            <p>Massage service at home</p>
+            <p>This is more detailed content for card 7. This content provides additional information.</p>
+        </div>
+    </div>
+
+    <!-- Slick JS -->
+   
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.slider_event').slick({
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                arrows: true,
+                dots: true,
+                responsive: [
+                    {
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 4
+                        }
+                    },
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 3
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 576,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+        });
+
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "flex";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let i = 0; i < modals.length; i++) {
+                if (event.target == modals[i]) {
+                    modals[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
+
